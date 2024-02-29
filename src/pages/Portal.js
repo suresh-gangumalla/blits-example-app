@@ -26,7 +26,7 @@ export default Blits.Component('Portal', {
   },
   template: `
     <Element w="1920" h="1080" color="{top: '#44037a', bottom: '#240244'}">
-      <PortalRow mount="{y: 0.5}" h="500" :y.transition="-$rowFocused * 420 + 550" title="Demos" items="$demo" ref="row0" />
+      <PortalRow mount="{y: 0.5}" h="500" :y.transition="-$rowFocused * 420 + 550" title="Demos" :items="$demo" ref="row0" />
       <PortalRow mount="{y: 0.5}" h="500" :y.transition="-$rowFocused * 420 + 1100" title="Examples and tests" items="$example" ref="row1" />
       <PortalRow mount="{y: 0.5}" h="500" :y.transition="-$rowFocused * 420 + 1650" title="Benchmarks and stress tests" items="$benchmark" ref="row2" />
       <Element w="1920" h="200" color="#44037a">
@@ -48,43 +48,7 @@ export default Blits.Component('Portal', {
       rowFocused: 0,
       rows: ['demo', 'example', 'benchmark'],
       logoOffset: 50,
-      demo: [
-        {
-          title: 'Loader',
-          id: 'demos/loading',
-          description: 'A basic loading screen',
-        },
-        {
-          title: 'Intro',
-          id: 'demos/intro',
-          description: 'A splash screen with custom animations',
-        },
-        {
-          title: 'Theming',
-          id: 'demos/theming',
-          description: 'Dynamically changing the styling of a component with themes',
-        },
-        {
-          title: 'TMDB',
-          id: 'demos/tmdb',
-          description: 'The Movie Database (TMDB) example using data from a remote API',
-        },
-        {
-          title: 'Sprites',
-          id: 'demos/sprites',
-          description: 'Display multiple images while keeping low memory footprint',
-        },
-        {
-          title: 'Focus',
-          id: 'demos/focushandling',
-          description: 'Managing focus between components in a simple layout',
-        },
-        {
-          title: 'Memory Game',
-          id: 'demos/memory-game',
-          description: 'Memory game with speech assistence (for accessibility)',
-        },
-      ],
+      demo: [],
       example: [
         {
           title: 'Positioning',
@@ -181,6 +145,45 @@ export default Blits.Component('Portal', {
   hooks: {
     ready() {
       this.logoOffset = 0
+      this.$setTimeout(() => {
+        this.demo = [
+          {
+            title: 'Loader',
+            id: 'demos/loading',
+            description: 'A basic loading screen',
+          },
+          {
+            title: 'Intro',
+            id: 'demos/intro',
+            description: 'A splash screen with custom animations',
+          },
+          {
+            title: 'Theming',
+            id: 'demos/theming',
+            description: 'Dynamically changing the styling of a component with themes',
+          },
+          {
+            title: 'TMDB',
+            id: 'demos/tmdb',
+            description: 'The Movie Database (TMDB) example using data from a remote API',
+          },
+          {
+            title: 'Sprites',
+            id: 'demos/sprites',
+            description: 'Display multiple images while keeping low memory footprint',
+          },
+          {
+            title: 'Focus',
+            id: 'demos/focushandling',
+            description: 'Managing focus between components in a simple layout',
+          },
+          {
+            title: 'Memory Game',
+            id: 'demos/memory-game',
+            description: 'Memory game with speech assistence (for accessibility)',
+          },
+        ]
+      }, 1000)
       this.$trigger('rowFocused')
     },
   },
