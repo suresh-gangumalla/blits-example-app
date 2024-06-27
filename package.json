@@ -5,6 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
+    "debug": "rimraf node_modules/.vite && npm run dev",
     "start": "npm run dev",
     "start:test": "NODE_ENV=testing npm run dev",
     "lint": "eslint '**/*.js'",
@@ -39,6 +40,6 @@
     "vite": "^4.0.4"
   },
   "dependencies": {
-    "@lightningjs/blits": "^0.9.9"
+    "@lightningjs/blits": "git+http://github.com/suresh-gangumalla/blits#forloop-improvements"
   }
 }
