@@ -40,7 +40,6 @@ import Images from './pages/Images'
 import Components from './pages/Components'
 import ForLoop from './pages/ForLoop'
 import ForLoopAdvanced from './pages/ForLoopAdvanced'
-import ForLoopSimple from './pages/ForLoopSimple.js'
 import Effects from './pages/Effects'
 import ShowIf from './pages/ShowIf'
 import Events from './pages/Events'
@@ -104,7 +103,6 @@ export default Blits.Application({
     { path: '/examples/components', component: Components },
     { path: '/examples/forloop', component: ForLoop },
     { path: '/examples/forloop-advanced', component: ForLoopAdvanced },
-    { path: '/examples/forloop-simple', component: ForLoopSimple },
     { path: '/examples/effects', component: Effects },
     { path: '/examples/showif', component: ShowIf },
     { path: '/examples/events', component: Events },

@@ -150,10 +150,10 @@ export default Blits.Component('ForLoop', {
       </Element>
       <Element x="740" y="100">
         <Text>For loop on Element</Text>
-        <!-- <Element :for="(item, index) in $data" key="$item.id + 'key'" w="500" h="60" :y="$index * 80 + 50" color="#fff7ed">
-                              <Element w="10" h="60" color="#fb923c" />
-                              <Text content="$item.text" x="30" y="10" font="opensans" color="#1e293b" />
-                            </Element> -->
+        <Element :for="(item, index) in $data" key="$item.id + 'key'" w="500" h="60" :y="$index * 80 + 50" color="#fff7ed">
+          <Element w="10" h="60" color="#fb923c" />
+          <Text content="$item.text" x="30" y="10" font="opensans" color="#1e293b" />
+        </Element>
       </Element>
     
       <Element x="1280" y="100">
@@ -174,14 +174,14 @@ export default Blits.Component('ForLoop', {
       sortDirection: 1,
     }
   },
-  // computed: {
-  //   show() {
-  //     return this.hide === true
-  //   },
-  //   data2() {
-  //     return this.data
-  //   },
-  // },
+  computed: {
+    show() {
+      return this.hide === true
+    },
+    data2() {
+      return this.data
+    },
+  },
   watch: {
     y() {
       this.hide = false
@@ -189,11 +189,6 @@ export default Blits.Component('ForLoop', {
       this.timeout = this.$setTimeout(() => {
         this.hide = true
       }, 600)
-    },
-  },
-  hooks: {
-    ready() {
-      console.log('ForLoopAdvanced: ', this)
     },
   },
   input: {
@@ -205,43 +200,36 @@ export default Blits.Component('ForLoop', {
         data.push(makeItem())
       }
       this.data = data
-      console.log('ForLoopAdvanced: ', this)
     },
     b() {
       this.y = 80
       this.trigger('y')
       this.data.push(makeItem())
-      console.log('ForLoopAdvanced: ', this)
     },
     c() {
       this.y = 170
       this.trigger('y')
       this.data.pop()
-      console.log('ForLoopAdvanced: ', this)
     },
     d() {
       this.y = 260
       this.trigger('y')
       this.data.shift()
-      console.log('ForLoopAdvanced: onKey D ', this)
     },
     e() {
       this.y = 350
       this.trigger('y')
       this.data.splice(2, 4)
-      console.log('ForLoopAdvanced: ', this)
     },
     f() {
       this.y = 440
       this.trigger('y')
       this.data.unshift(makeItem(), makeItem())
-      console.log('ForLoopAdvanced: ', this)
     },
     g() {
       this.y = 530
       this.trigger('y')
       this.data = []
-      console.log('ForLoopAdvanced: ', this)
     },
     h() {
       this.y = 620

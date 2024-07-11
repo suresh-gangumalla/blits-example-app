@@ -162,11 +162,6 @@ export default Blits.Component('Portal', {
           description: 'Testing various Array operations with a for loop',
         },
         {
-          title: 'Simple loop',
-          id: 'examples/forloop-simple',
-          description: 'Testing various Array operations with a for loop',
-        },
-        {
           title: 'Effects',
           id: 'examples/effects',
           description: 'Applying one or multiple effects (aka shaders)',
