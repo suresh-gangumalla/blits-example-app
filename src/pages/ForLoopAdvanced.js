@@ -110,14 +110,14 @@ const Row = Blits.Component('Row', {
   props: ['index', 'text', 'activeRow'],
 })
 
-const Rows = Blits.Component('Row', {
+const Rows = Blits.Component('Rows', {
   components: {
     Row,
   },
   template: `
-    <Row :for="(item, index) in $data" key="$item.id + 'key2'" :i="$index" text="$item.text" y="50" />
+    <Row :for="(item, index) in $data" key="$item.id + 'key2'" :index="$index" :text="$item.text" :activeRow="$activeRow" />
   `,
-  props: ['data'],
+  props: ['data', 'activeRow'],
 })
 
 export default Blits.Component('ForLoop', {
@@ -172,7 +172,7 @@ export default Blits.Component('ForLoop', {
           :text="$item.text"
           y="50"
         />
-        <!--         <Rows :data="$data" /> -->
+        <!-- <Rows :data="$data" :activeRow="$count > 0 ? $activeRowIndex : $activeRowIndex" /> -->
       </Element>
     </Element>
   `,
