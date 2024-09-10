@@ -197,6 +197,11 @@ export default Blits.Component('Portal', {
           id: 'examples/viewport',
           description: 'Lifecycle events when entering and leaving the viewport (margins)',
         },
+        {
+          title: 'Image resizing',
+          id: 'examples/resize',
+          description: 'Using the "fit" syntax for resizing images on the fly',
+        },
       ],
       benchmark: [
         {
@@ -210,14 +215,14 @@ export default Blits.Component('Portal', {
   hooks: {
     ready() {
       this.logoOffset = 0
-      this.trigger('rowFocused')
+      this.$trigger('rowFocused')
       console.log('backstopjs:ready')
     },
   },
   watch: {
     rowFocused(v) {
-      const row = this.select(`row${v}`)
-      if (row && row.focus) row.focus()
+      const row = this.$select(`row${v}`)
+      if (row && row.$focus) row.$focus()
     },
   },
   input: {
