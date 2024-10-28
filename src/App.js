@@ -16,6 +16,7 @@
  */
 
 import Blits from '@lightningjs/blits'
+import { Lifecycle } from '@firebolt-js/sdk'
 
 // Demo pages
 import Portal from './pages/Portal'
@@ -50,6 +51,7 @@ import Viewport from './pages/Viewport'
 import { RouterHookRoutes } from './pages/RouterHooks.js'
 import Resize from './pages/Resize'
 import LanguagePlugin from './pages/LanguagePlugin.js'
+import { FireBoltRoutes } from './pages/FireBolt'
 import SourceInfo from './components/SourceInfo.js'
 
 const queryString = new URLSearchParams(window.location.search)
@@ -66,7 +68,7 @@ export default Blits.Application({
       <FPScounter x="1610" :show="$showFPS" />
       <SourceInfo ref="info" :show="$showInfo" />
     </Element>
-  `,
+    `,
   state() {
     return {
       backgroundColor: '#1e293b',
@@ -124,10 +126,25 @@ export default Blits.Application({
     ...RouterHookRoutes,
     { path: '/examples/resize', component: Resize },
     { path: '/examples/languageplugin', component: LanguagePlugin },
+    ...FireBoltRoutes,
     // Benchmarks and stress tests
     { path: '/benchmarks/exponential', component: Exponential },
   ],
   hooks: {
+    async init() {
+      // Notify the platform that the app is ready
+      await Lifecycle.ready()
+
+      // Registering listener on fireBolt foreground lifecycle state
+      Lifecycle.listen('foreground', (data) => {
+        console.log(`Application advances from ${data.previous} state to ${data.state} state`)
+      })
+
+      // Registering listener on fireBolt background lifecycle state
+      Lifecycle.listen('background', (data) => {
+        console.log(`Application advances from ${data.previous} state to ${data.state} state`)
+      })
+    },
     ready() {
       if (process.env.NODE_ENV === 'testing') {
         this.showFPS = false
@@ -141,13 +158,17 @@ export default Blits.Application({
         this.backgroundColor = 'transparent'
       })
     },
+    async destroy() {
+      //The reason the app is requesting to be closed
+      await Lifecycle.close(Lifecycle.CloseReason.REMOTE_BUTTON)
+    },
   },
   input: {
     escape() {
       this.quit()
     },
     back() {
-      this.$router.to('/')
+      this.$router.currentRoute.path === '/' ? this.quit() : this.$router.to('/')
     },
     sourceCode() {
       this.showInfo = false
