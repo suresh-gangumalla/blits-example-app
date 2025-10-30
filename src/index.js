@@ -52,7 +52,7 @@ Blits.Launch(App, 'app', {
   w: 1920,
   h: 1080,
   multithreaded: false,
-  debugLevel: 1,
+  debugLevel: 2,
   reactivityMode: 'Proxy',
   // adding source code key code: U, u
   defaultFont: 'lato',
